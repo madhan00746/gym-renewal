@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Elete Fitness Club - Membership Management</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase Setup: Existing configuration preserved -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            getDocs,
+            onSnapshot,
+            deleteDoc,
+            doc,
+            updateDoc
+        } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB7q14vldBu1LMgz6RlYJbrwdwA1YczTJ8",
+            authDomain: "elete-fitness-club.firebaseapp.com",
+            projectId: "elete-fitness-club",
+            storageBucket: "elete-fitness-club.firebasestorage.app",
+            messagingSenderId: "866861723093",
+            appId: "1:866861723093:web:d9a8055adf84df7a2e215c"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.firebaseDB = db;
+        window.firebaseCollection = collection;
+        window.firebaseAddDoc = addDoc;
+        window.firebaseGetDocs = getDocs;
+        window.firebaseOnSnapshot = onSnapshot;
+        window.firebaseDeleteDoc = deleteDoc;
+        window.firebaseDoc = doc;
+        window.firebaseUpdateDoc = updateDoc;
+    </script>
+</head>
+
+<body>
+
+    <!-- Login Protection -->
+    <script>
+        if (localStorage.getItem("gymAdminLoggedIn") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+
+    <!-- TOP HEADER -->
+    <header>
+        <div>
+            <h1>Elete Fitness Club</h1>
+            <p>Membership Renewal Management</p>
+        </div>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+    </header>
+
+    <!-- DASHBOARD LAYOUT -->
+    <div class="dashboard-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+                <div class="brand-logo">E</div>
+
+                <div>
+                    <h2>ELETE</h2>
+                    <p>FITNESS CLUB</p>
+                </div>
+            </div>
+
+            <p class="sidebar-label">MAIN MENU</p>
+
+            <nav class="sidebar-nav">
+
+                <a href="#dashboard"
+                   class="sidebar-link active"
+                   onclick="setActiveNav(this)">
+                    <span>▦</span>
+                    Dashboard
+                </a>
+
+                <a href="#memberForm"
+                   class="sidebar-link"
+                   onclick="showAddMember(); setActiveNav(this)">
+                    <span>＋</span>
+                    Add Member
+                </a>
+
+                <a href="#memberList"
+                   class="sidebar-link"
+                   onclick="setActiveNav(this)">
+                    <span>♙</span>
+                    Members
+                </a>
+
+                <a href="#renewalSection"
+                   class="sidebar-link"
+                   onclick="filterMembers('renewal'); setActiveNav(this)">
+                    <span>◷</span>
+                    Renewal Due
+                </a>
+
+                <a href="#renewalSection"
+                   class="sidebar-link"
+                   onclick="filterMembers('pending'); setActiveNav(this)">
+                    <span>₹</span>
+                    Payments
+                </a>
+
+                <a href="#renewalSection"
+                   class="sidebar-link"
+                   onclick="filterMembers('expired'); setActiveNav(this)">
+                    <span>◉</span>
+                    Expired Members
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="admin-profile">
+                    <div class="admin-avatar">A</div>
+
+                    <div>
+                        <strong>Administrator</strong>
+                        <p>Gym Management</p>
+                    </div>
+                </div>
+
+                <button class="sidebar-logout" onclick="logout()">
+                    ↪ Logout
+                </button>
+
+            </div>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="container" id="dashboard">
+
+            <!-- DASHBOARD TITLE -->
+            <div class="dashboard-top">
+
+                <div>
+                    <h2>Dashboard</h2>
+
+                    <p class="subtitle">
+                        Manage your gym members easily
+                    </p>
+                </div>
+
+                <button class="add-btn" onclick="showAddMember()">
+                    + Add Member
+                </button>
+
+            </div>
+
+            <!-- ADD MEMBER FORM -->
+            <div id="memberForm" class="form-box">
+
+                <div class="form-title">
+                    <h2>Add New Member</h2>
+
+                    <button class="close-btn" onclick="hideAddMember()">
+                        ×
+                    </button>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="input-group">
+                        <label for="name">Member Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter member name">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="phone">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="plan">Membership Plan</label>
+
+                        <select id="plan">
+                            <option value="">Select Plan</option>
+                            <option value="1 Month">1 Month</option>
+                            <option value="3 Months">3 Months</option>
+                            <option value="6 Months">6 Months</option>
+                            <option value="1 Year">1 Year</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" id="startDate">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="amount">Amount</label>
+                        <input
+                            type="number"
+                            id="amount"
+                            placeholder="Enter amount">
+                    </div>
+
+                </div>
+
+                <div class="form-buttons">
+
+                    <button class="save-btn" onclick="addMember()">
+                        Save Member
+                    </button>
+
+                    <button class="cancel-btn" onclick="hideAddMember()">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- DASHBOARD STATISTICS -->
+            <section class="stats">
+
+                <div class="card">
+                    <span class="card-icon">👥</span>
+                    <div>
+                        <h3>Total Members</h3>
+                        <p id="totalMembers">0</p>
+                    </div>
+                </div>
+
+                <div class="card active-card">
+                    <span class="card-icon">🟢</span>
+                    <div>
+                        <h3>Active</h3>
+                        <p id="activeMembers">0</p>
+                    </div>
+                </div>
+
+                <div class="card renewal-card">
+                    <span class="card-icon">🟡</span>
+                    <div>
+                        <h3>Renewal Due</h3>
+                        <p id="renewalDue">0</p>
+                    </div>
+                </div>
+
+                <div class="card expired-card">
+                    <span class="card-icon">🔴</span>
+                    <div>
+                        <h3>Expired</h3>
+                        <p id="expiredMembers">0</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <span class="card-icon">💰</span>
+                    <div>
+                        <h3>Total Collection</h3>
+                        <p id="totalCollection">₹0</p>
+                    </div>
+                </div>
+
+                <div class="card pending-card">
+                    <span class="card-icon">⏳</span>
+                    <div>
+                        <h3>Pending Amount</h3>
+                        <p id="pendingAmount">₹0</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- MEMBER AND RENEWAL SECTION -->
+            <section class="renewal-section" id="renewalSection">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Renewal Check</h2>
+                        <p>Search and manage your members</p>
+                    </div>
+
+                    <div class="search-box">
+                        🔍
+                        <input
+                            type="text"
+                            id="search"
+                            placeholder="Search name or phone...">
+                    </div>
+
+                </div>
+
+                <!-- MEMBER FILTERS -->
+                <div class="filters">
+
+                    <button class="filter-btn"
+                            onclick="filterMembers('all')">
+                        All
+                    </button>
+
+                    <button class="filter-btn"
+                            onclick="filterMembers('active')">
+                        🟢 Active
+                    </button>
+
+                    <button class="filter-btn"
+                            onclick="filterMembers('renewal')">
+                        🟡 Renewal Due
+                    </button>
+
+                    <button class="filter-btn"
+                            onclick="filterMembers('expired')">
+                        🔴 Expired
+                    </button>
+
+                    <button class="filter-btn"
+                            onclick="filterMembers('pending')">
+                        💰 Payment Pending
+                    </button>
+
+                </div>
+
+                <!-- MEMBER LIST -->
+                <div id="memberList">
+
+                    <div class="empty">
+                        <div class="empty-icon">👤</div>
+                        <p>No members added yet.</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- EXISTING JAVASCRIPT -->
+    <script src="script.js"></script>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <script>
+        function setActiveNav(selectedLink) {
+            document.querySelectorAll(".sidebar-link").forEach(function(link) {
+                link.classList.remove("active");
+            });
+
+            selectedLink.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>

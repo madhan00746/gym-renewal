@@ -1,0 +1,1638 @@
+/* =====================================
+   ELITE FITNESS CLUB - COMPLETE CSS
+   Dark Green Professional Theme
+===================================== */
+
+:root {
+    --bg: #202622;
+    --surface: #2A332D;
+    --surface-light: #343F36;
+    --green: #B9DCC0;
+    --green-dark: #6F9F79;
+    --text: #F4F7F4;
+    --muted: #B9C4BB;
+    --border: #465248;
+    --danger: #E47777;
+    --warning: #E5C879;
+    --sidebar-width: 255px;
+    --radius: 14px;
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* HEADER */
+
+header {
+    min-height: 76px;
+    padding: 16px 30px;
+    background: #252D27;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--green);
+}
+
+header p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+header button,
+#logoutBtn {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 9px;
+    padding: 10px 16px;
+    transition: 0.2s ease;
+}
+
+header button:hover,
+#logoutBtn:hover {
+    background: var(--surface-light);
+    border-color: var(--green-dark);
+}
+
+/* MAIN DASHBOARD LAYOUT */
+
+.dashboard-layout {
+    display: flex;
+    align-items: flex-start;
+    min-height: calc(100vh - 76px);
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    min-height: calc(100vh - 76px);
+    padding: 24px 16px;
+    background: #252D27;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 76px;
+    align-self: flex-start;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.brand-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--green);
+    color: #202622;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.sidebar-brand h2 {
+    font-size: 17px;
+    color: var(--text);
+    line-height: 1.3;
+}
+
+.sidebar-brand p {
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.sidebar-label {
+    color: #87958A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 26px 10px 12px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 13px;
+    min-height: 46px;
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-link span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    font-size: 17px;
+}
+
+.sidebar-link:hover {
+    background: var(--surface-light);
+    color: var(--text);
+}
+
+.sidebar-link.active {
+    background: rgba(185, 220, 192, 0.13);
+    color: var(--green);
+    box-shadow: inset 3px 0 0 var(--green);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 25px;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 5px;
+    border-top: 1px solid var(--border);
+}
+
+.admin-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--green-dark);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.admin-profile h4 {
+    font-size: 13px;
+    color: var(--text);
+}
+
+.admin-profile p {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.sidebar-logout {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--danger);
+    border-radius: 9px;
+    text-align: left;
+    transition: 0.2s ease;
+}
+
+.sidebar-logout:hover {
+    background: rgba(228, 119, 119, 0.1);
+    border-color: var(--danger);
+}
+
+/* MAIN CONTENT */
+
+.container {
+    width: 100%;
+    max-width: 1600px;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.dashboard-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.dashboard-top h2 {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.dashboard-top p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.primary-btn {
+    background: var(--green);
+    color: #202622;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 18px;
+    font-weight: 700;
+    font-size: 13px;
+    transition: 0.2s ease;
+}
+
+.primary-btn:hover {
+    background: #D0E8D5;
+    transform: translateY(-1px);
+}
+
+/* DASHBOARD STAT CARDS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    min-width: 0;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--green-dark);
+}
+
+.card h3 {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--text);
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.card .card-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 10px;
+}
+
+.card .green-text {
+    color: var(--green);
+}
+
+.card .warning-text {
+    color: var(--warning);
+}
+
+.card .danger-text {
+    color: var(--danger);
+}
+
+/* FORM SECTION */
+
+#memberForm {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 25px;
+    margin-bottom: 30px;
+    scroll-margin-top: 100px;
+}
+
+#memberForm h2,
+#memberForm h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.form-group label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    min-width: 0;
+    background: #202622;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text);
+    padding: 12px 13px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #849087;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--green-dark);
+}
+
+.form-group select option {
+    background: var(--surface);
+    color: var(--text);
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 11px 17px;
+}
+
+.secondary-btn:hover {
+    background: var(--surface-light);
+    color: var(--text);
+}
+
+/* RENEWAL / MEMBER SECTION */
+
+.renewal-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    scroll-margin-top: 100px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    font-size: 21px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* SEARCH */
+
+.search-box {
+    width: 100%;
+    max-width: 380px;
+    margin-bottom: 20px;
+}
+
+.search-box input,
+#search {
+    width: 100%;
+    background: #202622;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 12px 14px;
+    color: var(--text);
+    outline: none;
+}
+
+.search-box input:focus,
+#search:focus {
+    border-color: var(--green-dark);
+}
+
+#search::placeholder {
+    color: #849087;
+}
+
+/* FILTER BUTTONS */
+
+.filters,
+.filter-buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 22px;
+}
+
+.filters button,
+.filter-buttons button {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 8px 15px;
+    color: var(--muted);
+    font-size: 12px;
+    transition: 0.2s ease;
+}
+
+.filters button:hover,
+.filter-buttons button:hover,
+.filters button.active,
+.filter-buttons button.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: #202622;
+}
+
+/* MEMBER LIST */
+
+#memberList {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.member-card {
+    min-width: 0;
+    background: #252D27;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    transition: border-color 0.2s ease;
+}
+
+.member-card:hover {
+    border-color: var(--green-dark);
+}
+
+.member-card h3 {
+    font-size: 17px;
+    overflow-wrap: anywhere;
+    margin-bottom: 4px;
+}
+
+.member-card p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 7px;
+    overflow-wrap: anywhere;
+}
+
+.member-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.member-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 15px 0;
+    padding: 13px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.member-details span {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.member-details strong {
+    display: block;
+    font-size: 13px;
+    color: var(--text);
+    overflow-wrap: anywhere;
+}
+
+/* STATUS BADGES */
+
+.status,
+.member-status {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 10px;
+    overflow-wrap: anywhere;
+}
+
+.status-active,
+.active-status {
+    color: #B9E9C4;
+    background: rgba(91, 170, 109, 0.16);
+}
+
+.status-due,
+.due-status {
+    color: var(--warning);
+    background: rgba(229, 200, 121, 0.13);
+}
+
+.status-expired,
+.expired-status {
+    color: var(--danger);
+    background: rgba(228, 119, 119, 0.13);
+}
+
+.status-paid {
+    color: #B9E9C4;
+    background: rgba(91, 170, 109, 0.16);
+}
+
+.status-pending {
+    color: var(--warning);
+    background: rgba(229, 200, 121, 0.13);
+}
+
+/* MEMBER ACTION BUTTONS */
+
+.member-actions,
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.member-actions button,
+.card-actions button {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 8px 11px;
+    border-radius: 7px;
+    font-size: 11px;
+    transition: 0.2s ease;
+}
+
+.member-actions button:hover,
+.card-actions button:hover {
+    border-color: var(--green);
+}
+
+.member-actions .edit-btn {
+    color: var(--green);
+}
+
+.member-actions .renew-btn {
+    background: var(--green);
+    color: #202622;
+    border-color: var(--green);
+    font-weight: 700;
+}
+
+.member-actions .delete-btn {
+    color: var(--danger);
+}
+
+.member-actions .renew-btn:hover {
+    background: #D0E8D5;
+}
+
+/* EMPTY STATE */
+
+.empty-state,
+.no-members {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    color: var(--muted);
+}
+
+.empty-state h3,
+.no-members h3 {
+    color: var(--text);
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.empty-state p,
+.no-members p {
+    font-size: 12px;
+}
+
+/* TABLES, IF USED */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+}
+
+th {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+td {
+    color: var(--text);
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* LOGIN PAGE SUPPORT */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    background: var(--bg);
+}
+
+.login-container,
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.login-container h1,
+.login-box h1 {
+    color: var(--green);
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.login-container p,
+.login-box p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+.login-container input,
+.login-box input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 15px;
+    background: #202622;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 9px;
+}
+
+.login-container button,
+.login-box button {
+    width: 100%;
+    padding: 13px;
+    background: var(--green);
+    border: none;
+    border-radius: 9px;
+    color: #202622;
+    font-weight: 700;
+}
+
+.login-container button:hover,
+.login-box button:hover {
+    background: #D0E8D5;
+}
+
+.error-message {
+    color: var(--danger);
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+/* SMALL LAPTOPS / TABLETS */
+
+@media (max-width: 1100px) {
+    :root {
+        --sidebar-width: 220px;
+    }
+
+    .container {
+        padding: 24px 20px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #memberList {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 19px;
+    }
+
+    .card p {
+        font-size: 26px;
+    }
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 760px) {
+    header {
+        min-height: 65px;
+        padding: 13px 16px;
+    }
+
+    header h1 {
+        font-size: 19px;
+    }
+
+    header p {
+        font-size: 11px;
+    }
+
+    header button,
+    #logoutBtn {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .dashboard-layout {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    /* Mobile sidebar becomes a horizontal menu */
+
+    .sidebar {
+        position: relative;
+        top: auto;
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+        padding: 14px;
+        background: #252D27;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-brand {
+        padding: 0 5px 14px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .brand-logo {
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
+    }
+
+    .sidebar-brand h2 {
+        font-size: 16px;
+    }
+
+    .sidebar-brand p {
+        font-size: 10px;
+    }
+
+    .sidebar-label {
+        padding: 15px 5px 8px;
+    }
+
+    .sidebar-nav {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 2px 0 10px;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sidebar-link {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding: 10px 13px;
+        font-size: 12px;
+        min-height: 42px;
+    }
+
+    .sidebar-link span {
+        font-size: 16px;
+        width: auto;
+    }
+
+    .sidebar-link.active {
+        box-shadow: inset 0 -3px 0 var(--green);
+    }
+
+    .sidebar-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding-top: 10px;
+        margin-top: 0;
+    }
+
+    .admin-profile {
+        padding: 8px 0;
+        border-top: none;
+    }
+
+    .admin-avatar {
+        width: 33px;
+        height: 33px;
+    }
+
+    .admin-profile h4 {
+        font-size: 12px;
+    }
+
+    .admin-profile p {
+        font-size: 10px;
+    }
+
+    .sidebar-logout {
+        width: auto;
+        flex-shrink: 0;
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 22px 16px;
+    }
+
+    .dashboard-top {
+        align-items: flex-start;
+    }
+
+    .dashboard-top h2 {
+        font-size: 23px;
+    }
+
+    .dashboard-top p {
+        font-size: 12px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .card h3 {
+        font-size: 11px;
+    }
+
+    .card p {
+        font-size: 23px;
+    }
+
+    #memberForm {
+        padding: 19px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .renewal-section {
+        padding: 17px;
+    }
+
+    .section-heading h2 {
+        font-size: 19px;
+    }
+
+    #memberList {
+        grid-template-columns: 1fr;
+    }
+
+    .member-card {
+        padding: 15px;
+    }
+
+    .filters,
+    .filter-buttons {
+        gap: 7px;
+    }
+
+    .filters button,
+    .filter-buttons button {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+
+    .search-box {
+        max-width: 100%;
+    }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+    header {
+        padding: 12px 10px;
+        gap: 8px;
+    }
+
+    header h1 {
+        font-size: 16px;
+    }
+
+    header button,
+    #logoutBtn {
+        padding: 8px 9px;
+        font-size: 11px;
+    }
+
+    .container {
+        padding: 16px 10px;
+    }
+
+    .dashboard-top {
+        flex-direction: column;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .card h3 {
+        font-size: 12px;
+    }
+
+    .card p {
+        font-size: 23px;
+    }
+
+    .sidebar {
+        padding: 12px 10px;
+    }
+
+    .sidebar-link {
+        padding: 9px 10px;
+    }
+
+    #memberForm {
+        padding: 15px;
+    }
+
+    .renewal-section {
+        padding: 13px;
+    }
+
+    .member-details {
+        gap: 8px;
+    }
+
+    .member-actions button,
+    .card-actions button {
+        padding: 8px 9px;
+        font-size: 10px;
+    }
+}
+/* ==================================
+   ADD NEW MEMBER - FORM REDESIGN
+================================== */
+
+#memberForm {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 30px;
+    padding: 30px;
+    background: #2A332D;
+    border: 1px solid #465248;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+    scroll-margin-top: 100px;
+    overflow: hidden;
+}
+
+/* Form heading */
+
+#memberForm h2,
+#memberForm h3 {
+    color: #F4F7F4;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+#memberForm .form-subtitle {
+    color: #B9C4BB;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+/* Form layout */
+
+#memberForm .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 22px;
+}
+
+#memberForm .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+}
+
+#memberForm .form-group label {
+    color: #DCE5DD;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Input fields */
+
+#memberForm .form-group input,
+#memberForm .form-group select,
+#memberForm .form-group textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 12px 14px;
+    background: #202622;
+    color: #F4F7F4;
+    border: 1px solid #465248;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+}
+
+#memberForm .form-group input::placeholder,
+#memberForm .form-group textarea::placeholder {
+    color: #89958C;
+}
+
+#memberForm .form-group input:hover,
+#memberForm .form-group select:hover,
+#memberForm .form-group textarea:hover {
+    border-color: #6F9F79;
+}
+
+#memberForm .form-group input:focus,
+#memberForm .form-group select:focus,
+#memberForm .form-group textarea:focus {
+    border-color: #B9DCC0;
+    background: #242C26;
+    box-shadow: 0 0 0 3px rgba(185, 220, 192, 0.10);
+}
+
+/* Date and dropdown fields */
+
+#memberForm input[type="date"] {
+    color-scheme: dark;
+}
+
+#memberForm select {
+    cursor: pointer;
+}
+
+#memberForm select option {
+    background: #2A332D;
+    color: #F4F7F4;
+}
+
+/* Buttons */
+
+#memberForm .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #465248;
+}
+
+#memberForm button[type="submit"],
+#memberForm .primary-btn {
+    min-height: 46px;
+    padding: 12px 23px;
+    background: #B9DCC0;
+    color: #202622;
+    border: 1px solid #B9DCC0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+#memberForm button[type="submit"]:hover,
+#memberForm .primary-btn:hover {
+    background: #D0E8D5;
+    border-color: #D0E8D5;
+    transform: translateY(-1px);
+}
+
+#memberForm button[type="button"],
+#memberForm .secondary-btn {
+    min-height: 44px;
+    padding: 11px 20px;
+    background: transparent;
+    color: #DCE5DD;
+    border: 1px solid #465248;
+    border-radius: 10px;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+#memberForm button[type="button"]:hover,
+#memberForm .secondary-btn:hover {
+    background: #343F36;
+    border-color: #6F9F79;
+}
+
+/* Small screen support */
+
+@media (max-width: 760px) {
+    #memberForm {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+    #memberForm h2,
+    #memberForm h3 {
+        font-size: 20px;
+    }
+
+    #memberForm .form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+        margin-top: 18px;
+    }
+
+    #memberForm .form-group input,
+    #memberForm .form-group select,
+    #memberForm .form-group textarea {
+        min-height: 46px;
+        font-size: 14px;
+    }
+
+    #memberForm .form-actions {
+        gap: 10px;
+        margin-top: 22px;
+    }
+
+    #memberForm button[type="submit"],
+    #memberForm .primary-btn,
+    #memberForm button[type="button"],
+    #memberForm .secondary-btn {
+        flex: 1 1 auto;
+        min-width: 110px;
+    }
+}
+
+@media (max-width: 380px) {
+    #memberForm {
+        padding: 17px 13px;
+    }
+
+    #memberForm .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #memberForm button[type="submit"],
+    #memberForm .primary-btn,
+    #memberForm button[type="button"],
+    #memberForm .secondary-btn {
+        width: 100%;
+    }
+}
+/* FORCE DARK INPUT BOXES */
+#memberForm input,
+#memberForm select,
+#memberForm textarea,
+#memberForm input[type="date"],
+#memberForm input[type="number"],
+#memberForm input[type="tel"],
+#memberForm input[type="text"] {
+    background-color: #171D19 !important;
+    color: #F4F7F4 !important;
+    border: 1px solid #465248 !important;
+    color-scheme: dark;
+}
+
+#memberForm input::placeholder,
+#memberForm textarea::placeholder {
+    color: #9AA69C !important;
+}
+
+#memberForm select option {
+    background-color: #171D19;
+    color: #F4F7F4;
+}
+
+#memberForm input:focus,
+#memberForm select:focus,
+#memberForm textarea:focus {
+    border-color: #B9DCC0 !important;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(185, 220, 192, 0.12);
+}
+/* ADD MEMBER + SAVE + CANCEL + CLOSE BUTTONS */
+
+/* Add Member button */
+#memberForm button,
+#memberForm .primary-btn,
+#memberForm .secondary-btn,
+#memberForm button[type="submit"],
+#memberForm button[type="button"] {
+    background-color: #171D19 !important;
+    color: #F4F7F4 !important;
+    border: 1px solid #465248 !important;
+    border-radius: 9px;
+}
+
+/* Hover effect */
+#memberForm button:hover,
+#memberForm .primary-btn:hover,
+#memberForm .secondary-btn:hover {
+    background-color: #303A32 !important;
+    color: #FFFFFF !important;
+    border-color: #B9DCC0 !important;
+}
+
+/* Close X button */
+#memberForm .close,
+#memberForm .close-btn,
+#memberForm .close-button,
+#memberForm button[aria-label="Close"],
+.close,
+.close-btn,
+.close-button,
+.modal-close,
+button[aria-label="Close"] {
+    background-color: #171D19 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #465248 !important;
+}
+
+/* X button hover */
+.close:hover,
+.close-btn:hover,
+.close-button:hover,
+.modal-close:hover,
+button[aria-label="Close"]:hover {
+    background-color: #303A32 !important;
+    color: #FFFFFF !important;
+}
+
+/* Buttons should remain readable */
+#memberForm button:focus-visible {
+    outline: 2px solid #B9DCC0;
+    outline-offset: 2px;
+}
+/* ADD MEMBER FORM - BUTTON ALIGNMENT FIX */
+
+/* Form container */
+#memberForm {
+    position: relative;
+    box-sizing: border-box;
+    padding: 28px;
+}
+
+/* Save and Cancel buttons */
+#memberForm .form-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    margin-top: 24px;
+}
+
+/* Keep button sizes consistent */
+#memberForm .form-actions button {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 115px;
+    min-height: 44px;
+    margin: 0;
+    padding: 11px 20px;
+    box-sizing: border-box;
+    line-height: 1.3;
+}
+
+/* Close X button - top right */
+#memberForm .close,
+#memberForm .close-btn,
+#memberForm .close-button,
+#memberForm .modal-close,
+#memberForm button[aria-label="Close"] {
+    position: absolute !important;
+    top: 18px !important;
+    right: 18px !important;
+    left: auto !important;
+    width: 38px !important;
+    min-width: 38px !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 9px !important;
+    background: #171D19 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #465248 !important;
+    font-size: 21px !important;
+    line-height: 1 !important;
+    cursor: pointer;
+}
+
+/* Hover effect for X */
+#memberForm .close:hover,
+#memberForm .close-btn:hover,
+#memberForm .close-button:hover,
+#memberForm .modal-close:hover,
+#memberForm button[aria-label="Close"]:hover {
+    background: #303A32 !important;
+    border-color: #B9DCC0 !important;
+}
+
+/* Mobile alignment */
+@media (max-width: 760px) {
+    #memberForm {
+        padding: 22px 16px;
+    }
+
+    #memberForm .form-actions {
+        display: flex;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    #memberForm .form-actions button {
+        flex: 1 1 110px;
+        min-width: 0;
+    }
+
+    #memberForm .close,
+    #memberForm .close-btn,
+    #memberForm .close-button,
+    #memberForm .modal-close,
+    #memberForm button[aria-label="Close"] {
+        position: absolute !important;
+        top: 12px !important;
+        right: 12px !important;
+        width: 36px !important;
+        min-width: 36px !important;
+        height: 36px !important;
+        min-height: 36px !important;
+    }
+}
+/* SAVE MEMBER & CANCEL - BIGGER BUTTONS + LOWER POSITION */
+
+#memberForm .form-actions {
+    margin-top: 38px !important;
+    padding-top: 22px !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 16px !important;
+}
+
+#memberForm .form-actions button {
+    min-width: 160px !important;
+    min-height: 52px !important;
+    padding: 15px 28px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    border-radius: 10px !important;
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+    #memberForm .form-actions {
+        margin-top: 32px !important;
+        padding-top: 18px !important;
+        gap: 12px !important;
+    }
+
+    #memberForm .form-actions button {
+        flex: 1 1 130px !important;
+        min-width: 0 !important;
+        min-height: 50px !important;
+        padding: 13px 16px !important;
+        font-size: 14px !important;
+    }
+}
+/* GAP BETWEEN AMOUNT FIELD AND BUTTONS */
+
+#memberForm .form-actions {
+    margin-top: 45px !important;
+    padding-top: 25px !important;
+}
+
+/* Mobile spacing */
+@media (max-width: 760px) {
+    #memberForm .form-actions {
+        margin-top: 35px !important;
+        padding-top: 20px !important;
+    }
+}
+/* Add New Member - Compact Layout */
+#memberForm {
+    padding: 18px 20px !important;
+    margin-bottom: 18px;
+    border-radius: 16px;
+}
+
+#memberForm h2,
+#memberForm h3 {
+    margin: 0 0 16px;
+}
+
+/* Reduce form spacing */
+#memberForm form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 18px;
+}
+
+/* Compact inputs */
+#memberForm input,
+#memberForm select {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 9px 10px;
+    margin: 0;
+}
+
+/* Keep labels neat */
+#memberForm label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Buttons at the bottom */
+#memberForm button {
+    padding: 9px 16px;
+    margin: 0;
+    cursor: pointer;
+}
+
+#memberForm .form-buttons,
+#memberForm .button-group {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    #memberForm form {
+        grid-template-columns: 1fr;
+    }
+
+    #memberForm .form-buttons,
+    #memberForm .button-group {
+        grid-column: 1;
+    }
+}
